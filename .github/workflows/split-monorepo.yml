@@ -1,0 +1,80 @@
+name: Split Monorepo
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    name: Split ${{ matrix.package.name }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - name: 'amphp-pool'
+            directory: 'packages/amphp-pool'
+          - name: 'application'
+            directory: 'packages/application'
+          - name: 'async-contracts'
+            directory: 'packages/async-contracts'
+          - name: 'configuator-toml'
+            directory: 'packages/configuator-toml'
+          - name: 'configurator-ini'
+            directory: 'packages/configurator-ini'
+          - name: 'console'
+            directory: 'packages/console'
+          - name: 'design-patterns'
+            directory: 'packages/design-patterns'
+          - name: 'di'
+            directory: 'packages/di'
+          - name: 'events'
+            directory: 'packages/events'
+          - name: 'ifcastle-amphp-engine'
+            directory: 'packages/ifcastle-amphp-engine'
+          - name: 'ifcastle-amphp-logger'
+            directory: 'packages/ifcastle-amphp-logger'
+          - name: 'ifcastle-amphp-web-server'
+            directory: 'packages/ifcastle-amphp-web-server'
+          - name: 'ifcastle-codestyle'
+            directory: 'packages/ifcastle-codestyle'
+          - name: 'ifcastle-monolog'
+            directory: 'packages/ifcastle-monolog'
+          - name: 'ifcastle-package-installer'
+            directory: 'packages/ifcastle-package-installer'
+          - name: 'ifcastle-swoole-engine'
+            directory: 'packages/ifcastle-swoole-engine'
+          - name: 'os-utilities'
+            directory: 'packages/os-utilities'
+          - name: 'php-open-telemetry'
+            directory: 'packages/php-open-telemetry'
+          - name: 'protocol-contracts'
+            directory: 'packages/protocol-contracts'
+          - name: 'rest-api'
+            directory: 'packages/rest-api'
+          - name: 'service-manager'
+            directory: 'packages/service-manager'
+          - name: 'type-definitions'
+            directory: 'packages/type-definitions'
+          - name: 'user-manager'
+            directory: 'packages/user-manager'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Split ${{ matrix.package.name }}
+        uses: symplify/monorepo-split-github-action@v2.3
+        with:
+          package_directory: ${{ matrix.package.directory }}
+          repository_organization: 'IFCastle'
+          repository_name: ${{ matrix.package.name }}
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+        env:
+          GITHUB_TOKEN: ${{ secrets.SPLIT_TOKEN }}

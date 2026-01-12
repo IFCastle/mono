@@ -1,0 +1,62 @@
+{
+    "name": "ifcastle/mono",
+    "type": "project",
+    "description": "IFCastle PHP packages monorepo",
+    "keywords": ["monorepo", "ifcastle", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Edmond Dantes",
+            "email": "edmondifthen@proton.me"
+        }
+    ],
+    "repositories": [
+        {"type": "path", "url": "./packages/amphp-pool"},
+        {"type": "path", "url": "./packages/application"},
+        {"type": "path", "url": "./packages/async-contracts"},
+        {"type": "path", "url": "./packages/configuator-toml"},
+        {"type": "path", "url": "./packages/configurator-ini"},
+        {"type": "path", "url": "./packages/console"},
+        {"type": "path", "url": "./packages/design-patterns"},
+        {"type": "path", "url": "./packages/di"},
+        {"type": "path", "url": "./packages/events"},
+        {"type": "path", "url": "./packages/ifcastle-amphp-engine"},
+        {"type": "path", "url": "./packages/ifcastle-amphp-logger"},
+        {"type": "path", "url": "./packages/ifcastle-amphp-web-server"},
+        {"type": "path", "url": "./packages/ifcastle-codestyle"},
+        {"type": "path", "url": "./packages/ifcastle-monolog"},
+        {"type": "path", "url": "./packages/ifcastle-package-installer"},
+        {"type": "path", "url": "./packages/ifcastle-swoole-engine"},
+        {"type": "path", "url": "./packages/os-utilities"},
+        {"type": "path", "url": "./packages/php-open-telemetry"},
+        {"type": "path", "url": "./packages/protocol-contracts"},
+        {"type": "path", "url": "./packages/rest-api"},
+        {"type": "path", "url": "./packages/service-manager"},
+        {"type": "path", "url": "./packages/type-definitions"},
+        {"type": "path", "url": "./packages/user-manager"}
+    ],
+    "require": {
+        "php": ">=8.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.5",
+        "phpstan/phpstan": "^2.1",
+        "rector/rector": "^2.3"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan analyse",
+        "cs:check": "php-cs-fixer fix --dry-run --diff",
+        "cs:fix": "php-cs-fixer fix"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "*": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
