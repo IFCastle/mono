@@ -39,6 +39,9 @@ class ConfigMainAppenderTest extends TestCase
             baz = "qux"
             TOML;
 
-        $this->assertEquals($expected, \str_replace(PHP_EOL, "\n", \file_get_contents(__DIR__ . '/main.toml')));
+        $this->assertEquals(
+            \str_replace(["\r\n", "\r"], "\n", $expected),
+            \str_replace(["\r\n", "\r"], "\n", \file_get_contents(__DIR__ . '/main.toml'))
+        );
     }
 }

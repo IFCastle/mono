@@ -34,7 +34,10 @@ class ConfigIniMutableTest extends TestCase
             baz = "qux"
             INI;
 
-        $this->assertEquals($expected, \str_replace(PHP_EOL, "\n", \file_get_contents('test.ini')));
+        $this->assertEquals(
+            \str_replace(["\r\n", "\r"], "\n", $expected),
+            \str_replace(["\r\n", "\r"], "\n", \file_get_contents('test.ini'))
+        );
     }
 
     public function testSaveNested(): void
@@ -65,6 +68,9 @@ class ConfigIniMutableTest extends TestCase
             list[] = "item2"
             INI;
 
-        $this->assertEquals($expected, \str_replace(PHP_EOL, "\n", \file_get_contents('test.ini')));
+        $this->assertEquals(
+            \str_replace(["\r\n", "\r"], "\n", $expected),
+            \str_replace(["\r\n", "\r"], "\n", \file_get_contents('test.ini'))
+        );
     }
 }

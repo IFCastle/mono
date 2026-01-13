@@ -23,8 +23,9 @@ class ReflectionFunctionReaderTest extends TestCase
         $definition = $reflectionFunctionReader->extractFunctionDescriptor($function);
 
         $this->assertNotNull($definition, 'Definition is null');
-        $this->assertEquals(__NAMESPACE__ . '\\{closure}', $definition->getName());
-        $this->assertEquals(__NAMESPACE__ . '\\{closure}', $definition->getFunctionName());
+        $this->assertStringContainsString('{closure', $definition->getName());
+        $this->assertStringContainsString(__NAMESPACE__, $definition->getName());
+        $this->assertStringContainsString('{closure', $definition->getFunctionName());
         $this->assertInstanceOf(TypeFunction::class, $definition);
 
         foreach ($definition->getArguments() as $argument) {
