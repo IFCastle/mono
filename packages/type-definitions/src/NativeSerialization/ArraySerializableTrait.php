@@ -78,7 +78,9 @@ trait ArraySerializableTrait
                 break;
             }
 
-            [$iterator, &$context]   = \array_pop($stack);
+            $popped                  = \array_pop($stack);
+            $iterator                = $popped[0];
+            $context                 = &$popped[1];
         }
 
         return $context;
