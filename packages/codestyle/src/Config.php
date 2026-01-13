@@ -31,7 +31,7 @@ class Config extends PhpCsFixerConfig
     {
         return [
             '@PER-CS2.0' => true,
-            '@PHP83Migration' => true,
+            '@PHP85Migration' => true,
             '@PHPUnit100Migration:risky' => true,
             'single_quote' => true,
             'method_argument_space' => [

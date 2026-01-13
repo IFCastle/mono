@@ -67,8 +67,6 @@ class RectorConfigurator
             ChangeOrIfContinueToMultiContinueRector::class,
             AddArrowFunctionReturnTypeRector::class,
             JoinStringConcatRector::class,
-            // Warning: Can break LSP - narrows return type even when interface requires wider type
-            NarrowWideUnionReturnTypeRector::class,
             // Warning: A rule can break the code if it does "not understand" the context and reasons.
             RemoveAlwaysTrueIfConditionRector::class,
             // Warning: Can't work with the Traits
