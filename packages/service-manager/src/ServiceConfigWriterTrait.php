@@ -206,7 +206,7 @@ trait ServiceConfigWriterTrait
         }
 
         if ($serviceSuffix === null) {
-            return array_first($services);
+            return \array_first($services);
         }
 
         if (\array_key_exists($serviceSuffix, $services)) {

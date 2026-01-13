@@ -62,7 +62,6 @@ class CommandBuildHelper
     }
 
     /**
-     * @param FunctionDescriptorInterface $methodDescriptor
      * @return array<string, array{
      *     bool,
      *     string,

@@ -54,33 +54,33 @@ final class RemoteException extends BaseException implements ContainerSerializab
             $exception              = BaseException::serializeToArray($exception, withTrace: true);
 
             if (\array_key_exists('previous', $exception)) {
-                
-                if(is_array($exception['previous']) && !empty($exception['previous']['previous'])) {
+
+                if (\is_array($exception['previous']) && !empty($exception['previous']['previous'])) {
                     $exception['remotePrevious'] = $exception['previous']['previous'];
                 }
-                
+
                 unset($exception['previous']);
             }
         }
 
         parent::__construct($this->normalizeData($exception), 0, $previous);
     }
-    
+
     #[\Override]
     public function toArray(bool $withTrace = false): array
     {
         $result                     = parent::toArray($withTrace);
-        
+
         $result['file']             = $this->getRemoteFile();
         $result['line']             = $this->getRemoteLine();
         $result['source']           = $this->getRemoteSource();
         $result['trace']            = $this->getRemoteTrace();
         $result['remotePrevious']   = $this->getRemotePrevious();
-        
+
         return $result;
     }
-    
-    
+
+
     #[\Override]
     public function getDefinition(): DefinitionInterface
     {

@@ -20,7 +20,7 @@ final class AliasInitializer implements InitializerInterface
      */
     private \WeakReference|int|string|float|bool|array|null $dependency = null;
 
-    public function __construct(readonly public string $alias, readonly public bool $isRequired = false) {}
+    public function __construct(public readonly string $alias, public readonly bool $isRequired = false) {}
 
     #[\Override]
     public function wasCalled(): bool

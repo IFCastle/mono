@@ -11,12 +11,7 @@ use IfCastle\TypeDefinitions\NativeSerialization\AttributeNameInterface;
 readonly class AsConsole implements AttributeNameInterface
 {
     /**
-     * @param string      $commandName
-     * @param string|null $namespace
      * @param string[]    $aliases
-     * @param bool        $hidden
-     * @param string      $help
-     * @param string      $description
      */
     public function __construct(
         public string   $commandName    = '',

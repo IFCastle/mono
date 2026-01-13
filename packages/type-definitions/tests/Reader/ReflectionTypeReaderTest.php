@@ -70,13 +70,13 @@ class ReflectionTypeReaderTest extends TestCase
     {
         $class                      = new class {
             protected int $integer;
-            
+
             protected float $float;
-            
+
             protected bool $boolean;
-            
+
             protected array $array;
-            
+
             protected string $string;
         };
 

@@ -27,30 +27,30 @@ final class ConfigMainAppender extends ConfigIniMutable implements MainConfigApp
     public function appendSectionIfNotExists(string $section, array $data, string $comment = ''): void
     {
         $this->load();
-        
+
         $node                       = $this->find(...\explode('.', $section));
 
         if ($node !== null) {
             return;
         }
-        
+
         $content                    = [];
-        
-        if($comment !== '') {
-            
-            $content[]              = '; '.str_repeat('=', 48);
-            
-            foreach (explode("\n", $comment) as $line) {
-                $content[]          = '; '.$line;
+
+        if ($comment !== '') {
+
+            $content[]              = '; ' . \str_repeat('=', 48);
+
+            foreach (\explode("\n", $comment) as $line) {
+                $content[]          = '; ' . $line;
             }
-            
-            $content[]              = '; '.str_repeat('=', 48);
+
+            $content[]              = '; ' . \str_repeat('=', 48);
             $content[]              = '';
         }
-        
-        $content                    = array_merge($content, $this->build($data, $section));
-        
-        $iniString                  = PHP_EOL.\implode(PHP_EOL, $content);
+
+        $content                    = \array_merge($content, $this->build($data, $section));
+
+        $iniString                  = PHP_EOL . \implode(PHP_EOL, $content);
 
         Safe::execute(fn() => \file_put_contents($this->file, $iniString, \FILE_APPEND));
         $this->reset();

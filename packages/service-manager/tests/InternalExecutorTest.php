@@ -12,13 +12,13 @@ use PHPUnit\Framework\TestCase;
 class InternalExecutorTest extends TestCase
 {
     protected RepositoryReaderInterface $repositoryReader;
-    
+
     protected ServiceDescriptorBuilderInterface $descriptorBuilder;
-    
+
     protected DescriptorRepository $descriptorRepository;
-    
+
     protected ServiceLocator $serviceLocator;
-    
+
     protected InternalExecutor $executor;
 
     #[\Override]

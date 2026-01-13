@@ -83,9 +83,9 @@ final class HttpReactorEngine extends \IfCastle\Amphp\AmphpEngine
                 $requestEnv         = new RequestEnvironment($request, $environment);
                 // bind response factory
                 $requestEnv->set(ResponseFactoryInterface::class, new ResponseFactory());
-                
+
                 $response           = null;
-                
+
                 try {
                     $environment->setRequestEnvironment($requestEnv);
                     $requestPlan->executePlan($requestEnv);

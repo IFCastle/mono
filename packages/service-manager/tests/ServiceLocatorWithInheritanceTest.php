@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 class ServiceLocatorWithInheritanceTest extends TestCase
 {
     private RepositoryReaderMemory $repositoryReader;
-    
+
     private ServiceLocatorInterface $serviceLocator;
 
     #[\Override]

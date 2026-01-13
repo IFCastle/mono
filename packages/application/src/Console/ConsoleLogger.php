@@ -26,10 +26,10 @@ final readonly class ConsoleLogger implements ConsoleLoggerInterface
         };
 
         $options                    = $verbosity;
-        
-        if($message instanceof \Throwable) {
+
+        if ($message instanceof \Throwable) {
             $message                = $message->getMessage();
-        } elseif($message instanceof \Stringable) {
+        } elseif ($message instanceof \Stringable) {
             $message                = $message->__toString();
         }
 

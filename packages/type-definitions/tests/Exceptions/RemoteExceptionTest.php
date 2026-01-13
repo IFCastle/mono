@@ -18,10 +18,10 @@ class RemoteExceptionTest extends TestCase
             'type' => 'Exception',
             'source' =>
                  [
-                    'source' => self::class,
-                    'type' => '->',
-                    'function' => __FUNCTION__,
-                ],
+                     'source' => self::class,
+                     'type' => '->',
+                     'function' => __FUNCTION__,
+                 ],
             'file' => __FILE__,
             'line' => $line,
             'message' => 'Test exception',
@@ -31,20 +31,20 @@ class RemoteExceptionTest extends TestCase
             'remotePrevious' => null,
             'container' => RemoteException::class,
         ];
-        
+
         $serialized = $remoteException->toArray(true);
-        
+
         $this->assertIsArray($serialized);
         $this->assertArrayHasKey('trace', $serialized, 'The trace key is missing');
         unset($serialized['trace']);
-        
+
         $this->assertEquals($expected, $serialized, 'The serialized array does not match the expected array');
     }
-    
+
     public function testRestore(): void
     {
         $line                       = __LINE__ + 1;
-        
+
         $remoteException            = [
             'type'                  => 'Exception',
             'source'                =>
@@ -62,9 +62,9 @@ class RemoteExceptionTest extends TestCase
             'remotePrevious'        => null,
             'container'             => RemoteException::class,
         ];
-        
+
         $restored                   = new RemoteException($remoteException);
-        
+
         $this->assertSame('Exception', $restored->getRemoteClassName(), 'The remote class name does not match');
         $this->assertSame($line, $restored->getRemoteLine(), 'The remote line does not match');
         $this->assertSame(__FILE__, $restored->getRemoteFile(), 'The remote file does not match');

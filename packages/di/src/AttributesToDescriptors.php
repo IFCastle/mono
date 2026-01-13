@@ -370,7 +370,7 @@ class AttributesToDescriptors
                     break;
                 }
 
-                $current            = array_first($interfaces);
+                $current            = \array_first($interfaces);
 
                 yield $current;
             }

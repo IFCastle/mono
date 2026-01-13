@@ -11,9 +11,9 @@ use PHPUnit\Framework\TestCase;
 class DescriptorRepositoryTest extends TestCase
 {
     private RepositoryReaderMemory $repositoryReader;
-    
+
     private DescriptorRepository $descriptorRepository;
-    
+
     private ServiceDescriptorBuilderInterface $descriptorBuilder;
 
     #[\Override]

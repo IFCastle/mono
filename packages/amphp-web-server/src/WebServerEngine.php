@@ -64,7 +64,7 @@ class WebServerEngine extends \IfCastle\Amphp\AmphpEngine implements WorkerPoolB
 
         // Check JIT support
         if (\function_exists('opcache_get_status')) {
-            $opcacheStatus          = opcache_get_status(false);
+            $opcacheStatus          = \opcache_get_status(false);
             $jitStatus              = $opcacheStatus['jit'] ?? false;
 
             if ($jitStatus) {

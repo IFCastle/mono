@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace IfCastle\Swoole;
@@ -18,22 +19,22 @@ use Swoole\Timer;
 class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInterface
 {
     protected array $callbacks  = [];
-    
+
     #[\Override]
     public function run(\Closure $function): CoroutineInterface
     {
         return new CoroutineAdapter(Coroutine::create($function));
     }
-    
+
     /**
      * @throws \Throwable
      */
     #[\Override]
     public function await(iterable $futures, ?CancellationInterface $cancellation = null): array
     {
-        return Awaiter::await(iterator_count($futures), $futures, $cancellation)[1];
+        return Awaiter::await(\iterator_count($futures), $futures, $cancellation)[1];
     }
-    
+
     /**
      * @throws LogicalException
      * @throws UnexpectedValue
@@ -43,10 +44,10 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
     public function awaitFirst(iterable $futures, ?CancellationInterface $cancellation = null): mixed
     {
         $results                    = Awaiter::await(1, $futures, $cancellation)[1];
-        
+
         return $results[\array_key_first($results) ?? null] ?? null;
     }
-    
+
     #[\Override]
     public function awaitFirstSuccessful(iterable $futures, ?CancellationInterface $cancellation = null): mixed
     {
@@ -54,7 +55,7 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
 
         return $results[\array_key_first($results) ?? null] ?? null;
     }
-    
+
     /**
      * @throws UnexpectedValue
      * @throws LogicalException
@@ -63,9 +64,9 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
     #[\Override]
     public function awaitAll(iterable $futures, ?CancellationInterface $cancellation = null): array
     {
-        return Awaiter::await(iterator_count($futures), $futures, $cancellation, true);
+        return Awaiter::await(\iterator_count($futures), $futures, $cancellation, true);
     }
-    
+
     /**
      * @throws LogicalException
      * @throws UnexpectedValue
@@ -76,50 +77,50 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
     {
         return Awaiter::await($count, $futures, $cancellation, true);
     }
-    
+
     #[\Override]
     public function createChannelPair(int $size = 0): array
     {
         $channel                    = new ChannelAdapter(new Coroutine\Channel($size));
         return [$channel, $channel];
     }
-    
+
     #[\Override]
     public function createQueue(int $size = 0): QueueInterface
     {
         return new Queue($size);
     }
-    
+
     #[\Override]
     public function createTimeoutCancellation(float $timeout, string $message = 'Operation timed out'): CancellationInterface
     {
         return new TimeoutCancellation($timeout, $message);
     }
-    
+
     #[\Override]
     public function compositeCancellation(CancellationInterface ...$cancellations): CancellationInterface
     {
         return new CompositeCancellation(...$cancellations);
     }
-    
+
     #[\Override]
     public function createDeferredCancellation(): DeferredCancellationInterface
     {
         return new DeferredCancellation();
     }
-    
+
     #[\Override]
     public function defer(callable $callback): void
     {
         Timer::after(0, $callback);
     }
-    
+
     #[\Override]
     public function delay(float|int $delay, callable $callback): int|string
     {
-        return Timer::after((int)($delay * 1000), $callback);
+        return Timer::after((int) ($delay * 1000), $callback);
     }
-    
+
     /**
      * @throws UnexpectedValue
      */
@@ -127,63 +128,63 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
     public function interval(float|int $interval, callable $callback): int|string
     {
         // Check if an interval is 10 ms or less.
-        if($interval <= 0.1) {
+        if ($interval <= 0.1) {
             throw new UnexpectedValue('$interval', $interval, 'Interval must be greater than 10 ms.');
         }
-        
-        $timerId                    = Timer::tick((int)($interval * 1000), fn() => $callback());
+
+        $timerId                    = Timer::tick((int) ($interval * 1000), fn() => $callback());
         $this->callbacks[$timerId]  = $callback;
-        
+
         return $timerId;
     }
-    
+
     #[\Override]
     public function cancelInterval(int|string $timerId): void
     {
-        if(Timer::exists($timerId)) {
+        if (Timer::exists($timerId)) {
             Timer::clear($timerId);
         }
-        
-        if(array_key_exists($timerId, $this->callbacks) === false) {
+
+        if (\array_key_exists($timerId, $this->callbacks) === false) {
             return;
         }
-        
+
         //
         // We do this because PHP not free memory correctly for Array structure.
         // So we build a new array from old.
         //
         $callbacks                  = [];
-        
+
         foreach ($this->callbacks as $key => $callback) {
-            if($key !== $timerId) {
+            if ($key !== $timerId) {
                 $callbacks[$key]    = $callback;
             }
         }
-        
+
         $this->callbacks            = $callbacks;
     }
-    
+
     #[\Override]
     public function stopAllCoroutines(?\Throwable $exception = null): bool
     {
         // TODO: Implement stopAllCoroutines() method.
     }
-    
+
     #[\Override]
     public function dispose(): void
     {
         $callbacks                  = $this->callbacks;
         $this->callbacks            = [];
-        
-        foreach($callbacks as $timerId => $callback) {
+
+        foreach ($callbacks as $timerId => $callback) {
             try {
-                
+
                 Timer::clear($timerId);
-                
-                if($callback instanceof DisposableInterface) {
+
+                if ($callback instanceof DisposableInterface) {
                     $callback->dispose();
                 }
-            } catch(\Throwable) {
+            } catch (\Throwable) {
                 // Ignore
             }
         }

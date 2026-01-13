@@ -32,9 +32,6 @@ class ServiceCommand extends Command implements AutoResolverInterface
     protected ExecutorInterface|null $serviceExecutor = null;
 
     /**
-     * @param string $commandName
-     * @param string $serviceName
-     * @param string $methodName
      * @param array<string, array{
      *      bool,
      *      string,
@@ -44,9 +41,6 @@ class ServiceCommand extends Command implements AutoResolverInterface
      *      bool
      *  }> $arguments
      * @param string[] $aliases
-     * @param string $help
-     * @param string $description
-     * @param bool $isHidden
      */
     public function __construct(
         public string $commandName,
@@ -141,8 +135,6 @@ class ServiceCommand extends Command implements AutoResolverInterface
     }
 
     /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
      * @return array<string, mixed>
      * @throws ServiceException
      */

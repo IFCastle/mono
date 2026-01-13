@@ -69,7 +69,7 @@ class TypeException extends TypeObject
         } elseif ($data instanceof \Throwable) {
             return new RemoteException($data)->toArray(true);
         }
-        
+
         throw new EncodingException($this, 'Expected instance of Throwable', ['value' => \get_debug_type($data)]);
 
     }

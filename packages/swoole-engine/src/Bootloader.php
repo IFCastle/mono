@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace IfCastle\Swoole;
@@ -15,7 +16,7 @@ final class Bootloader implements BootloaderInterface
     public function buildBootloader(BootloaderExecutorInterface $bootloaderExecutor): void
     {
         $builder                    = $bootloaderExecutor->getBootloaderContext()->getSystemEnvironmentBootBuilder();
-        
+
         $builder->bindConstructible(EngineInterface::class, SwooleEngine::class)
                 ->bindConstructible(CoroutineContextInterface::class, CoroutineContext::class)
                 ->bindConstructible(CoroutineSchedulerInterface::class, CoroutineScheduler::class);

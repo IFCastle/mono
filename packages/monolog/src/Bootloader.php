@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace IfCastle\Monolog;
@@ -23,21 +24,21 @@ final class Bootloader implements BootloaderInterface
                 $this->buildLogger($bootloaderExecutor->getBootloaderContext())
             );
     }
-    
+
     private function buildLogger(BootloaderContextInterface $bootloaderContext): LoggerInterface
     {
         $logger                     = new Logger($bootloaderContext->getApplicationType());
         $configuration              = $bootloaderContext->getApplicationConfig()->findSection('logger');
         $roles                      = $bootloaderContext->getExecutionRoles();
-        
-        if(in_array(EngineRolesEnum::CONSOLE->value, $roles, true)) {
+
+        if (\in_array(EngineRolesEnum::CONSOLE->value, $roles, true)) {
             $logHandler             = new StreamHandler('php://stdout');
-            $logHandler->pushProcessor(new PsrLogMessageProcessor);
-            $logHandler->setFormatter(new LineFormatter);
-            
+            $logHandler->pushProcessor(new PsrLogMessageProcessor());
+            $logHandler->setFormatter(new LineFormatter());
+
             $logger->pushHandler($logHandler);
         }
-        
+
         return $logger;
     }
 }
