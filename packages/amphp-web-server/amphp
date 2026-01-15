@@ -31,7 +31,11 @@ use IfCastle\AmphpWebServer\WebServerApplication;
                 break;
             }
         }
-        
+
+        if(!empty($GLOBALS['_composer_autoload_path'])) {
+            $file = $GLOBALS['_composer_autoload_path'];
+        }
+
         if (null === $file) {
             throw new \RuntimeException('Unable to locate autoload.php file.');
         }
@@ -53,7 +57,11 @@ use IfCastle\AmphpWebServer\WebServerApplication;
                 break;
             }
         }
-        
+
+        if(!empty($GLOBALS['_composer_bin_dir'])) {
+            $dir = $GLOBALS['_composer_bin_dir'];
+        }
+
         if (null === $dir) {
             throw new \RuntimeException('Unable to locate autoload.php dir.');
         }
