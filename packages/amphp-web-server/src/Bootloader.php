@@ -15,8 +15,13 @@ final class Bootloader implements BootloaderInterface
     #[\Override]
     public function buildBootloader(BootloaderExecutorInterface $bootloaderExecutor): void
     {
-        $bootloaderExecutor->getBootloaderContext()->getSystemEnvironmentBootBuilder()
-                           ->bindConstructible(EngineInterface::class, WebServerEngine::class, isThrow: false)
-                           ->bindConstructible(ConsoleOutputInterface::class, ConsoleOutput::class, isThrow: false);
+        $builder                    = $bootloaderExecutor->getBootloaderContext()->getSystemEnvironmentBootBuilder();
+
+        if ($builder->isBound(EngineInterface::class)) {
+            return;
+        }
+
+        $builder->bindConstructible(EngineInterface::class, WebServerEngine::class, isThrow: false)
+                ->bindConstructible(ConsoleOutputInterface::class, ConsoleOutput::class, isThrow: false);
     }
 }
