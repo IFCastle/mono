@@ -16,6 +16,9 @@ final class Queue implements QueueInterface
 
     private bool $closed            = false;
 
+    /**
+     * @var array<callable>
+     */
     private array $onClose          = [];
 
     public function __construct(int $size = 0)

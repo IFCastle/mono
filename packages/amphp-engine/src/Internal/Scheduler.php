@@ -28,6 +28,9 @@ final class Scheduler
      */
     private array $coroutines       = [];
 
+    /**
+     * @var array<int, array<Coroutine>>
+     */
     private array $coroutinesQueue  = [];
 
     private int         $highestPriority   = 0;

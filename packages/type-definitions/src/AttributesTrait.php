@@ -8,6 +8,9 @@ use IfCastle\TypeDefinitions\NativeSerialization\AttributeNameInterface;
 
 trait AttributesTrait
 {
+    /**
+     * @var array<string, mixed>
+     */
     protected array $attributes = [];
 
     #[\Override]

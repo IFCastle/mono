@@ -121,16 +121,25 @@ final class RemoteException extends BaseException implements ContainerSerializab
         return $this->data['file'] ?? '';
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getRemoteTrace(): array
     {
         return $this->data['trace'] ?? [];
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function getRemoteSource(): array
     {
         return $this->data['source'] ?? [];
     }
 
+    /**
+     * @return array<mixed>|null
+     */
     public function getRemotePrevious(): array|null
     {
         return $this->data['remotePrevious'] ?? null;
