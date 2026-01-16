@@ -9,6 +9,9 @@ use IfCastle\Async\DeferredCancellationInterface;
 
 final class DeferredCancellation implements DeferredCancellationInterface
 {
+    /**
+     * @var array<callable>
+     */
     private array $callbacks = [];
 
     private bool $isCancelled = false;

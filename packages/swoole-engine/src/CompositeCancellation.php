@@ -8,6 +8,9 @@ use IfCastle\Async\CancellationInterface;
 
 class CompositeCancellation extends CancellationAbstract
 {
+    /**
+     * @var array<CancellationInterface>
+     */
     private readonly array $cancellations;
 
     public function __construct(CancellationInterface ...$cancellations)

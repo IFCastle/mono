@@ -10,6 +10,9 @@ use Swoole\Coroutine;
 
 abstract class CancellationAbstract implements CancellationInterface
 {
+    /**
+     * @var array<callable>
+     */
     protected array $callbacks      = [];
 
     protected bool $isRequested     = false;

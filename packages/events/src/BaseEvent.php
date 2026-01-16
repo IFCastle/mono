@@ -43,6 +43,9 @@ class BaseEvent implements EventInterface, ArraySerializableInterface
         );
     }
 
+    /**
+     * @param array<string, mixed> $array
+     */
     protected function constructFromArray(array $array): static
     {
         $this->eventName            = $array[self::EVENT_NAME] ?? '';

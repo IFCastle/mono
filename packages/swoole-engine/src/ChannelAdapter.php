@@ -11,6 +11,9 @@ final class ChannelAdapter implements ChannelInterface
 {
     private bool $closed = false;
 
+    /**
+     * @var array<callable>
+     */
     private array $onClose = [];
 
     public function __construct(private readonly Channel $channel) {}

@@ -19,6 +19,9 @@ class ExternalEvent extends BaseEvent implements ExternalEventInterface
         );
     }
 
+    /**
+     * @param array<string> $eventTopics
+     */
     public function __construct(
         string                  $eventName,
         protected ?string       $eventProducer = null,
@@ -51,6 +54,9 @@ class ExternalEvent extends BaseEvent implements ExternalEventInterface
     }
 
     #[\Override]
+    /**
+     * @param array<string> $eventTopics
+     */
     public function setEventTopics(array $eventTopics): static
     {
         $this->eventTopics          = $eventTopics;

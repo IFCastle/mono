@@ -18,6 +18,9 @@ use Swoole\Timer;
 
 class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInterface
 {
+    /**
+     * @var array<string, callable>
+     */
     protected array $callbacks  = [];
 
     #[\Override]
@@ -36,6 +39,7 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
     }
 
     /**
+     * @param iterable<FutureInterface> $futures
      * @throws LogicalException
      * @throws UnexpectedValue
      * @throws \Throwable
@@ -57,6 +61,8 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
     }
 
     /**
+     * @param iterable<FutureInterface> $futures
+     * @return array<mixed>
      * @throws UnexpectedValue
      * @throws LogicalException
      * @throws \Throwable
