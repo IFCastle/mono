@@ -7,8 +7,14 @@ namespace IfCastle\Amphp;
 use Amp\Sync\Channel;
 use IfCastle\Async\ChannelInterface;
 
+/**
+ * @template T
+ */
 final readonly class ChannelAdapter implements ChannelInterface
 {
+    /**
+     * @param Channel<T> $channel
+     */
     public function __construct(public Channel $channel) {}
 
     #[\Override]

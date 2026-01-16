@@ -12,8 +12,14 @@ use IfCastle\DesignPatterns\Pool\StackInterface;
 
 final class AsyncStack implements StackInterface
 {
+    /**
+     * @var Queue<object>|null
+     */
     private Queue|null $queue;
 
+    /**
+     * @var ConcurrentIterator<object>|null
+     */
     private ConcurrentIterator|null $iterator;
 
     private int $size = 0;

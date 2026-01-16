@@ -9,8 +9,14 @@ use IfCastle\Async\CancellationInterface;
 use IfCastle\Async\ConcurrentIteratorInterface;
 use Traversable;
 
+/**
+ * @template T
+ */
 final readonly class ConcurrentIteratorAdapter implements ConcurrentIteratorInterface
 {
+    /**
+     * @param ConcurrentIterator<T> $concurrentIterator
+     */
     public function __construct(public ConcurrentIterator $concurrentIterator) {}
 
     #[\Override]

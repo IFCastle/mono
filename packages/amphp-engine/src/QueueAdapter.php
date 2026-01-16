@@ -10,8 +10,14 @@ use IfCastle\Async\ConcurrentIteratorInterface;
 use IfCastle\Async\FutureInterface;
 use IfCastle\Async\QueueInterface;
 
+/**
+ * @template T
+ */
 final readonly class QueueAdapter implements QueueInterface
 {
+    /**
+     * @param Queue<T> $queue
+     */
     public function __construct(public Queue $queue) {}
 
     #[\Override]

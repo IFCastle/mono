@@ -8,8 +8,14 @@ use Amp\Future;
 use IfCastle\Async\CancellationInterface;
 use IfCastle\Async\FutureInterface;
 
+/**
+ * @template T
+ */
 final readonly class FutureAdapter implements FutureInterface
 {
+    /**
+     * @param Future<T> $future
+     */
     public function __construct(public Future $future) {}
 
 
