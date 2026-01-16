@@ -6,6 +6,9 @@ namespace IfCastle\Amphp;
 
 use IfCastle\DI\DisposableInterface;
 
+/**
+ * @extends \ArrayObject<string, mixed>
+ */
 final class InternalContext extends \ArrayObject implements DisposableInterface
 {
     /**

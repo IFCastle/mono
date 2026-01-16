@@ -17,10 +17,19 @@ final class Coroutine
 
     private bool $isCancelled = false;
 
+    /**
+     * @var Suspension<mixed, mixed, mixed>|null
+     */
     private Suspension|null     $suspension          = null;
 
+    /**
+     * @var \WeakReference<Suspension<mixed, mixed, mixed>>|null
+     */
     private \WeakReference|null $schedulerSuspension = null;
 
+    /**
+     * @param DeferredFuture<mixed>|null $future
+     */
     public function __construct(
         private \Closure|null $closure,
         private readonly int $priority  = 0,
@@ -83,11 +92,17 @@ final class Coroutine
         }
     }
 
+    /**
+     * @return Suspension<mixed, mixed, mixed>|null
+     */
     public function getSuspension(): ?Suspension
     {
         return $this->suspension;
     }
 
+    /**
+     * @param Suspension<mixed, mixed, mixed> $suspension
+     */
     public function defineSuspension(Suspension $suspension): void
     {
         if ($this->suspension !== null) {
@@ -97,6 +112,9 @@ final class Coroutine
         $this->suspension           = $suspension;
     }
 
+    /**
+     * @param Suspension<mixed, mixed, mixed> $schedulerSuspension
+     */
     public function defineSchedulerSuspension(Suspension $schedulerSuspension): void
     {
         if ($this->schedulerSuspension !== null) {
@@ -106,6 +124,9 @@ final class Coroutine
         $this->schedulerSuspension = \WeakReference::create($schedulerSuspension);
     }
 
+    /**
+     * @return Future<mixed>|null
+     */
     public function getFuture(): Future|null
     {
         return $this->future?->getFuture();

@@ -9,6 +9,9 @@ use Revolt\EventLoop;
 
 final class CoroutineContext implements CoroutineContextInterface
 {
+    /**
+     * @var EventLoop\FiberLocal<InternalContext>
+     */
     private static EventLoop\FiberLocal $fiberLocal;
 
     private static function defineCurrentContext(): InternalContext
