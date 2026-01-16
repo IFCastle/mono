@@ -18,12 +18,12 @@ final class Coroutine
     private bool $isCancelled = false;
 
     /**
-     * @var Suspension<mixed, mixed, mixed>|null
+     * @var Suspension<mixed>|null
      */
     private Suspension|null     $suspension          = null;
 
     /**
-     * @var \WeakReference<Suspension<mixed, mixed, mixed>>|null
+     * @var \WeakReference<Suspension<mixed>>|null
      */
     private \WeakReference|null $schedulerSuspension = null;
 
@@ -93,7 +93,7 @@ final class Coroutine
     }
 
     /**
-     * @return Suspension<mixed, mixed, mixed>|null
+     * @return Suspension<mixed>|null
      */
     public function getSuspension(): ?Suspension
     {
@@ -101,7 +101,7 @@ final class Coroutine
     }
 
     /**
-     * @param Suspension<mixed, mixed, mixed> $suspension
+     * @param Suspension<mixed> $suspension
      */
     public function defineSuspension(Suspension $suspension): void
     {
@@ -113,7 +113,7 @@ final class Coroutine
     }
 
     /**
-     * @param Suspension<mixed, mixed, mixed> $schedulerSuspension
+     * @param Suspension<mixed> $schedulerSuspension
      */
     public function defineSchedulerSuspension(Suspension $schedulerSuspension): void
     {
