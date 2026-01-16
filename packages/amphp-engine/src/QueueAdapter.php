@@ -61,7 +61,7 @@ final readonly class QueueAdapter implements QueueInterface
     #[\Override]
     /**
      * @param T $value
-     * @return FutureInterface<T>
+     * @return FutureInterface<null>
      */
     public function pushWithPromise(mixed $value, ?CancellationInterface $cancellation = null): FutureInterface
     {

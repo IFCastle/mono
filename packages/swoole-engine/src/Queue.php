@@ -46,7 +46,7 @@ final class Queue implements QueueInterface
     #[\Override]
     /**
      * @param mixed $value
-     * @return FutureInterface<mixed>
+     * @return FutureInterface<null>
      */
     public function pushWithPromise(mixed $value): FutureInterface
     {

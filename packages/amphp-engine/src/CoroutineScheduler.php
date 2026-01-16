@@ -93,6 +93,9 @@ final class CoroutineScheduler implements CoroutineSchedulerInterface
     }
 
     #[\Override]
+    /**
+     * @return QueueInterface<mixed>
+     */
     public function createQueue(int $size = 0): QueueInterface
     {
         return new QueueAdapter(new \Amp\Pipeline\Queue($size));
