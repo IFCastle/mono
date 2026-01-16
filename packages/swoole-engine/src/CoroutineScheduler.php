@@ -39,7 +39,7 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
     }
 
     /**
-     * @param iterable<FutureInterface> $futures
+     * @param iterable<int|string, FutureInterface> $futures
      * @throws LogicalException
      * @throws UnexpectedValue
      * @throws \Throwable
@@ -52,6 +52,9 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
         return $results[\array_key_first($results) ?? null] ?? null;
     }
 
+    /**
+     * @param iterable<int|string, FutureInterface> $futures
+     */
     #[\Override]
     public function awaitFirstSuccessful(iterable $futures, ?CancellationInterface $cancellation = null): mixed
     {
@@ -61,7 +64,7 @@ class CoroutineScheduler implements CoroutineSchedulerInterface, DisposableInter
     }
 
     /**
-     * @param iterable<FutureInterface> $futures
+     * @param iterable<int|string, FutureInterface> $futures
      * @return array<mixed>
      * @throws UnexpectedValue
      * @throws LogicalException

@@ -25,7 +25,7 @@ final class BootloaderBuilderByIniFiles extends BootloaderBuilderAbstract
         $configuratorFile           = $this->bootloaderDir . '/' . BootManagerApplication::CONFIGURATOR . '.ini';
 
         if (false === \file_exists($configuratorFile)) {
-            throw new \RuntimeException('Configuration component not found.'
+            throw new \RuntimeException('Configuration component not found ('.$configuratorFile.').'
                                         . ' Try installing one of the following: '
                                         . '"composer require ifcastle/configurator-ini"');
         }
