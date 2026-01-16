@@ -52,18 +52,28 @@ final class CoroutineScheduler implements CoroutineSchedulerInterface
     }
 
     #[\Override]
+    /**
+     * @param iterable<FutureInterface> $futures
+     */
     public function awaitFirst(iterable $futures, ?CancellationInterface $cancellation = null): mixed
     {
         return awaitFirst($futures, self::resolveCancellation($cancellation));
     }
 
     #[\Override]
+    /**
+     * @param iterable<FutureInterface> $futures
+     */
     public function awaitFirstSuccessful(iterable $futures, ?CancellationInterface $cancellation = null
     ): mixed {
         return awaitAny($futures, self::resolveCancellation($cancellation));
     }
 
     #[\Override]
+    /**
+     * @param iterable<FutureInterface> $futures
+     * @return array<mixed>
+     */
     public function awaitAll(iterable $futures, ?CancellationInterface $cancellation = null): array
     {
         return awaitAll($futures, self::resolveCancellation($cancellation));
