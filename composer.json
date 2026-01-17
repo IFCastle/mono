@@ -76,7 +76,7 @@
         }
     },
     "scripts": {
-        "test": "phpunit --verbose",
+        "test": "phpunit --display-warnings --display-errors --display-notices",
         "analyse": "phpstan analyse --memory-limit=1G",
         "cs:check": "php-cs-fixer fix --dry-run --diff",
         "cs:fix": "php-cs-fixer fix",
